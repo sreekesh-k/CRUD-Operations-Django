@@ -4,7 +4,8 @@ from  . models import ItemsInfo
 # Create your views here.
 
 def listItems(request):
-    return render(request,"list.html")
+    itemList = ItemsInfo.objects.all()
+    return render(request,"list.html",{"items":itemList})
 
 
 def edit(request):
