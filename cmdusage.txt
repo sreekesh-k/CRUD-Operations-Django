@@ -36,11 +36,28 @@ CRUD-Operations:
     object = modelClassName.objects.all()
     pass it to the html as array(dictionary)-> return render(request,"example.html",{"items":object})
 
-    EDIT::
+    EDIT::DELETE::
+    pass the primary key to the path->
     
+    EDITING::path('edit/<pk>', views.edit,name="edit"),
+                def edit(request,pk):
+                    itemToEdit = ItemsInfo.objects.get(pk=pk)
+                    if request.POST:
+                        name = request.POST.get("name")
+                        description = request.POST.get("description")
+                        quantity = request.POST.get("quantity")
+                        itemToEdit.name = name
+                        itemToEdit.description = description 
+                        itemToEdit.quantity = quantity
+                        itemToEdit.save()
+                    return render(request,"edit.html",{"item":itemToEdit})
 
-    DELETE::
-
+    DELETING::path('delete/<pk>', views.delete,name="delete"),
+                def delete(request,pk):
+                    itemToDelete = ItemsInfo.objects.get(pk=pk)
+                    itemToDelete.delete()
+                    itemList = ItemsInfo.objects.all()
+                    return render(request,"list.html",{"items":itemList})
 _________________________________________________________________
 
 Python shell(test small code):: python manage.py shell
