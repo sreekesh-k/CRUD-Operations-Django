@@ -9,10 +9,23 @@ def listItems(request):
 
 
 def edit(request,pk):
-    return render(request,"edit.html")
+    itemToEdit = ItemsInfo.objects.get(pk=pk)
+    if request.POST:
+        name = request.POST.get("name")
+        description = request.POST.get("description")
+        quantity = request.POST.get("quantity")
+        itemToEdit.name = name
+        itemToEdit.description = description 
+        itemToEdit.quantity = quantity
+        itemToEdit.save()
+  
+    return render(request,"edit.html",{"item":itemToEdit})
 
 def delete(request,pk):
-    return render(request,"edit.html")
+    itemToDelete = ItemsInfo.objects.get(pk=pk)
+    itemToDelete.delete()
+    itemList = ItemsInfo.objects.all()
+    return render(request,"list.html",{"items":itemList})
 
 def create(request):
     if request.POST:
