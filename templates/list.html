@@ -24,10 +24,10 @@
             <td>{{ item.description }}</td>
             <td>{{ item.quantity }}</td>
             <td>
-              <a href="#">Edit</a>
+              <a href="{% url 'edit' item.id %}">Edit</a>
             </td>
             <td>
-              <a href="#">Delete</a>
+              <a href="{% url 'delete' item.id %}">Delete</a>
             </td>
           </tr>
         {% endfor %}

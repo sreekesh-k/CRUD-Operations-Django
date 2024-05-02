@@ -36,8 +36,14 @@ CRUD-Operations:
     object = modelClassName.objects.all()
     pass it to the html as array(dictionary)-> return render(request,"example.html",{"items":object})
 
+    EDIT::
+    
+
+    DELETE::
+
 _________________________________________________________________
 
+Python shell(test small code):: python manage.py shell
 Admin default given by django to manage the entire project
 SuperUser:
     python manage.py createsuperuser

@@ -8,9 +8,11 @@ def listItems(request):
     return render(request,"list.html",{"items":itemList})
 
 
-def edit(request):
+def edit(request,pk):
     return render(request,"edit.html")
 
+def delete(request,pk):
+    return render(request,"edit.html")
 
 def create(request):
     if request.POST:
