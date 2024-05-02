@@ -1,0 +1,48 @@
+create a new projectFolder
+
+python -m venv virtualEnvironmentName
+    pip install django
+
+\virtualEnvironmentName\Scripts\activate
+    cd.. cd..
+
+django-admin startproject projectName
+    cd projectName 
+
+python manage.py startapp appName
+_________________________________________________________________
+
+create templates folder-projectName
+    set urls - give names to urls 
+    set views - define function to return renders(responses)
+    include app urls in mainApp(projectname) 
+
+python manage.py runserver
+
+edit app-models: define class className(model.Model)
+    python manage.py makemigration
+    python manage.py migrate
+_________________________________________________________________
+
+
+CRUD-Operations:
+    CREATE::
+    from the request from the form (csrf_token is must)
+    if request.POST then get the data fromthe POST
+    make an object of model = modelClassName(data)
+    object.save()
+
+    READ::
+    object = modelClassName.objects.all()
+    pass it to the html as array(dictionary)-> return render(request,"example.html",{"items":object})
+
+_________________________________________________________________
+
+Admin default given by django to manage the entire project
+SuperUser:
+    python manage.py createsuperuser
+    /admin
+    to include the crud for userdefinde models - edit the admin.py in the app
+    from . model import ModelClass
+    admin.site.register(modelName)
+_________________________________________________________________
